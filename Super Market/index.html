@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supermarket Grocery Booking</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #2e8b57;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #1f6f43;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .card button {
+            background-color: #2e8b57;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .card button:hover {
+            background-color: #1f6f43;
+        }
+
+        .cart {
+            background: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: #2e8b57;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛒 FreshMart Supermarket</h1>
+    <p>Book Your Daily Groceries Online</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Groceries</a>
+    <a href="#">Cart</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="container">
+
+    <h2>Available Products</h2>
+
+    <div class="products">
+
+        <div class="card">
+            <img src="./images/rice.png">
+            <h3>Rice (1kg)</h3>
+            <p>₹60</p>
+            <button onclick="addToCart('Rice',60)">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="./images/milk.png">
+            <h3>Milk (1L)</h3>
+            <p>₹50</p>
+            <button onclick="addToCart('Milk',50)">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="./images/vegetables.png">
+            <h3>Vegetables</h3>
+            <p>₹40</p>
+            <button onclick="addToCart('Vegetables',40)">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="./images/fruits.png">
+            <h3>Fruits</h3>
+            <p>₹80</p>
+            <button onclick="addToCart('Fruits',80)">Add to Cart</button>
+        </div>
+
+    </div>
+
+    <div class="cart">
+        <h2>🛍 Cart</h2>
+        <ul id="cartItems"></ul>
+        <h3>Total: ₹<span id="total">0</span></h3>
+        <button onclick="placeOrder()">Place Order</button>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 FreshMart Supermarket | All Rights Reserved</p>
+</footer>
+
+<script>
+    let total = 0;
+
+    function addToCart(product, price) {
+        let cart = document.getElementById("cartItems");
+
+        let li = document.createElement("li");
+        li.innerText = product + " - ₹" + price;
+        cart.appendChild(li);
+
+        total += price;
+        document.getElementById("total").innerText = total;
+    }
+
+    function placeOrder() {
+        if (total === 0) {
+            alert("Your cart is empty!");
+        } else {
+            alert("Order placed successfully! 🛒\nTotal Amount: ₹" + total);
+            document.getElementById("cartItems").innerHTML = "";
+            document.getElementById("total").innerText = 0;
+            total = 0;
+        }
+    }
+</script>
+
+</body>
+</html>
+
